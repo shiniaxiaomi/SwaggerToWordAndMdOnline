@@ -3,7 +3,6 @@ package org.word.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import io.swagger.annotations.*;
-import javafx.scene.control.Tab;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,10 +14,8 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.word.model.ModelAttr;
 import org.word.model.Request;
-import org.word.model.Response;
 import org.word.model.Table;
 import org.word.service.WordService;
-import springfox.documentation.service.Parameter;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -34,9 +31,6 @@ import java.util.*;
 @Controller
 @Api(tags = "the toWord API")
 public class WordController {
-
-    @Value("${swagger.url}")
-    private String swaggerUrl;
 
     @Autowired
     private WordService tableService;
@@ -188,7 +182,7 @@ public class WordController {
 
 
     private void generateModelData(Model model, String url, Integer download) {
-        url = StringUtils.defaultIfBlank(url, swaggerUrl);
+        url = StringUtils.defaultIfBlank(url, "https://petstore.swagger.io/v2/swagger.json");
         Map<String, Object> result = tableService.tableList(url);
         model.addAttribute("url", url);
         model.addAttribute("download", download);

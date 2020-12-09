@@ -418,10 +418,10 @@ public class WordServiceImpl implements WordService {
         if (!jsonMap.isEmpty()) {
             if (jsonMap.size() == 1) {
                 for (Entry<String, Object> entry : jsonMap.entrySet()) {
-                    res += " -d '" + JsonUtils.writeJsonStr(entry.getValue()) + "'";
+                    res += JsonUtils.writeJsonStr(entry.getValue());
                 }
             } else {
-                res += " -d '" + JsonUtils.writeJsonStr(jsonMap) + "'";
+                res += JsonUtils.writeJsonStr(jsonMap);
             }
         }
         return res;

@@ -111,7 +111,7 @@
 
                 <th:block th:each="request, c:${table.requestList}">
                     <tr align="center">
-                        <td align="left" th:text="${c.count} + '.' + ${request.name}"></td>
+                        <td align="left" th:text="${c.count} + '. ' + ${request.name}"></td>
                         <td th:text="${request.type}"></td>
                         <td th:text="${request.paramType}"></td>
                         <td th:if="${request.require}" th:text="Y"></td>
@@ -126,17 +126,17 @@
 
                 </th:block>
 
-                <tr class="bg" align="center">
-                    <td>状态码</td>
-                    <td colspan="2">描述</td>
-                    <td colspan="2">说明</td>
-                </tr>
+<!--                <tr class="bg" align="center">-->
+<!--                    <td>状态码</td>-->
+<!--                    <td colspan="2">描述</td>-->
+<!--                    <td colspan="2">说明</td>-->
+<!--                </tr>-->
 
-                <tr align="center" th:each="response:${table.responseList}">
-                    <td th:text="${response.name}"></td>
-                    <td colspan="2" th:text="${response.description}"></td>
-                    <td colspan="2" th:text="${response.remark}"></td>
-                </tr>
+<!--                <tr align="center" th:each="response:${table.responseList}">-->
+<!--                    <td th:text="${response.name}"></td>-->
+<!--                    <td colspan="2" th:text="${response.description}"></td>-->
+<!--                    <td colspan="2" th:text="${response.remark}"></td>-->
+<!--                </tr>-->
 
                 <tr class="bg" align="center">
                     <td>返回属性名</td>
@@ -167,7 +167,7 @@
 <th:block th:fragment="request(properties,count, lv)">
     <th:block th:each="p,c : ${properties}">
         <tr align="center">
-            <td align="left" th:text="${count} + '' + ${c.count} + '.' + ${p.name}"
+            <td align="left" th:text="${count} + '' + ${c.count} + '. ' + ${p.name}"
                 th:style="|padding-left:${10*lv}px|"></td>
             <td th:text="${p.type}"></td>
             <td></td>
@@ -176,20 +176,20 @@
             <td th:text="${p.description}"></td>
         </tr>
         <th:block th:unless="${#lists.isEmpty(p.properties)}"
-                  th:include="this::request(${p.properties},${count} + '' + ${c.count} + '.',${lv+1})"/>
+                  th:include="this::request(${p.properties},${count} + '' + ${c.count} + '. ',${lv+1})"/>
     </th:block>
 </th:block>
 
 <th:block th:fragment="response(properties,count, lv)">
     <th:block th:each="p,c : ${properties}">
         <tr align="center">
-            <td align="left" th:text="${count} + '' + ${c.count} + '.' + ${p.name}"
+            <td align="left" th:text="${count} + '' + ${c.count} + '. ' + ${p.name}"
                 th:style="|padding-left:${10*lv}px|"></td>
             <td colspan="2" th:text="${p.type}"></td>
             <td colspan="2" th:text="${p.description}"></td>
         </tr>
         <th:block th:unless="${#lists.isEmpty(p.properties)}"
-                  th:include="this::response(${p.properties},${count} + '' + ${c.count} + '.',${lv+1})"/>
+                  th:include="this::response(${p.properties},${count} + '' + ${c.count} + '. ',${lv+1})"/>
     </th:block>
 </th:block>
 </body>
